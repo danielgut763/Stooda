@@ -1,6 +1,6 @@
 @startuml
 
-class Entity {
+class EducationEntity {
     +id: Long
     +name: String
 }
@@ -54,10 +54,10 @@ enum Difficulty {
     HARD
 }
 
-Test "*"--->"1" Entity : belongs to
+Test "*"--->"1" EducationEntity : belongs to
 Question "*"--->"1" Test : belongs to
 Question "1"---"*" Alternative : has
-Question "*"--->"*" area : covers
-Question "*"--->"1" subject : is about
+Question "*"--->"*" Area : covers
+Question "*"--->"1" Subject : is about
 Question "*"--->"0..1" TextBase : can have
 @enduml

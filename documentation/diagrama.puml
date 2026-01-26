@@ -1,0 +1,63 @@
+@startuml
+
+class Entidade {
+    +id: Long
+    +nome: String
+}
+
+class Test {
+    +id: Long
+    +year: Integer
+    +type: TestType
+}
+
+class Question {
+    +id: Long
+    +questionText: String
+    +difficulty: Difficulty
+    +QuestionNumber: Integer
+    +image: byte[]
+    +alternatives: List<Alternative>
+}
+class Alternative {
+    +id: Long
+    +question: Question
+    +text: String
+    +correct: Boolean
+    +image: byte[]
+    +letterId: String
+}
+class area {
+    +id: Long
+    +name: String
+}
+
+class subject {
+    +id: Long
+    +name: String
+}
+
+class TextBase {
+    +id: Long
+    +content: String
+}
+
+enum TestType {
+    VESTIBULAR
+    ENEM
+    CONCURSO
+}
+
+enum Difficulty {
+    EASY
+    MEDIUM
+    HARD
+}
+
+Test "*"--->"1" Entity : belongs to
+Question "*"--->"1" Test : belongs to
+Question "1"---"*" Alternative : has
+Question "*"--->"*" area : covers
+Question "*"--->"1" subject : is about
+Question "*"--->"0..1" TextBase : can have
+@enduml

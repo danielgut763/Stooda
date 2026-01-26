@@ -1,0 +1,73 @@
+
+Table EducationalEntity {
+  id integer [primary key]
+  entityName varchar
+}
+
+Table Year {
+  id integer [primary key]
+}
+
+Table Test {
+  id integer [primary key]
+  testType TestType
+  year Year
+  questions Question
+  educationalEntity EducationalEntity
+}
+
+Table Question {
+  id integer [primary key]
+  questionText varchar
+  difficulty Difficulty
+  questionNumber integer
+  image byte
+  alternatives Alternative
+  area Area
+  subject Subject
+}
+
+Table Alternative {
+  id integer [primary key]
+  question Question
+  text varchar
+  correct boolean
+  image byte
+  letterId varchar
+}
+
+Table Area {
+  id integer [primary key]
+  name varchar
+}
+
+Table Subject{
+  id integer [primary key]
+  name varchar
+}
+
+Table TextBase{
+  id integer [primary key]
+  content varchar
+  questionsRef Question
+}
+
+enum TestType {
+  VESTIBULAR
+  ENEM
+  CONCURSO
+}
+
+enum Difficulty {
+  EASY
+  MEDIUM
+  HARD
+}
+
+Ref: Question.alternatives > Alternative.question
+Ref: Test.year > Year.id
+Ref: Test.questions > Question.id
+Ref: Test.educationalEntity - EducationalEntity.entityName 
+Ref: Question.area - Area.name
+Ref: Question.subject - Subject.name
+Ref: TextBase.questionsRef > Question.id

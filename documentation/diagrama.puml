@@ -1,8 +1,8 @@
 @startuml
 
-class Entidade {
+class Entity {
     +id: Long
-    +nome: String
+    +name: String
 }
 
 class Test {
@@ -27,12 +27,12 @@ class Alternative {
     +image: byte[]
     +letterId: String
 }
-class area {
+class Area {
     +id: Long
     +name: String
 }
 
-class subject {
+class Subject {
     +id: Long
     +name: String
 }

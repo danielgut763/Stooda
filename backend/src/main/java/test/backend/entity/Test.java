@@ -1,4 +1,4 @@
-package test.backend.entities;
+package test.backend.entity;
 
 import jakarta.persistence.*;
 import lombok.*;

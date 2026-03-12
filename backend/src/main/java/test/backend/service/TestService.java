@@ -39,6 +39,6 @@ public class TestService {
     }
 
     private void updateTest(Optional<Test> newObj, Test obj) {
-        newObj.get().setName(obj.getName());
+        newObj.get().setTestYear(obj.getTestYear());
     }
 }

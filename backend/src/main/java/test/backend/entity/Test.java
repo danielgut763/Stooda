@@ -7,7 +7,8 @@ import java.io.Serializable;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Getter
+@Setter
 @EqualsAndHashCode(of = "id" )
 
 @Entity
@@ -16,6 +17,6 @@ public class Test implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private int year;
+    private int testYear;
     private String name;
 }

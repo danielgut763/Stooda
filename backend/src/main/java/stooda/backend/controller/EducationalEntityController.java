@@ -1,22 +1,22 @@
-package test.backend.controller;
+package stooda.backend.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import test.backend.entity.Test;
-import test.backend.service.TestService;
+import stooda.backend.entity.EducationalEntity;
+import stooda.backend.service.EducationalEntityService;
 
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/tests")
-public class TestController {
+@RequestMapping(value = "/educationalEntity")
+public class EducationalEntityController {
     @Autowired
-    private TestService service;
+    private EducationalEntityService service;
 
     @PostMapping
-    public ResponseEntity<Test> create(@RequestBody Test obj){
+    public ResponseEntity<EducationalEntity> create(@RequestBody EducationalEntity obj){
         return ResponseEntity.status(HttpStatus.CREATED).body(service.create(obj));
     }
 
@@ -27,17 +27,17 @@ public class TestController {
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<Test> getId(@PathVariable Long id){
+    public ResponseEntity<EducationalEntity> getId(@PathVariable Long id){
         return ResponseEntity.ok().body(service.getId(id));
     }
 
     @GetMapping
-    public ResponseEntity<List<Test>> getAll(){
+    public ResponseEntity<List<EducationalEntity>> getAll(){
         return ResponseEntity.ok().body(service.getAll());
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<Test> update(@PathVariable Long id, @RequestBody Test obj){
+    public ResponseEntity<EducationalEntity> update(@PathVariable Long id, @RequestBody EducationalEntity obj){
         obj.setId(id);
         return ResponseEntity.ok().body(service.update(obj));
     }

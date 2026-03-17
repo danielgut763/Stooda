@@ -1,5 +1,6 @@
-package test.backend.entity;
+package stooda.backend.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -18,5 +19,9 @@ public class Test implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private int testYear;
-    private String name;
+
+    @ManyToOne
+    @JoinColumn(name = "educationalEntity_id" )
+    @JsonBackReference
+    private EducationalEntity educationalEntity;
 }

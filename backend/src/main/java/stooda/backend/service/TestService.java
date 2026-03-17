@@ -1,9 +1,9 @@
-package test.backend.service;
+package stooda.backend.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import test.backend.entity.Test;
-import test.backend.repository.TestRepository;
+import stooda.backend.entity.Test;
+import stooda.backend.repository.TestRepository;
 
 import java.util.List;
 import java.util.Optional;

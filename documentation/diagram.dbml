@@ -1,39 +1,9 @@
 
-Table EducationalEntity {
-  id integer [primary key]
-  entityName varchar
-}
-
-Table Year {
-  id integer [primary key]
-}
-
 Table Test {
   id integer [primary key]
-  testType TestType
-  year Year
-  questions Question
-  educationalEntity EducationalEntity
-}
-
-Table Question {
-  id integer [primary key]
-  questionText varchar
-  difficulty Difficulty
-  questionNumber integer
-  image byte
-  alternatives Alternative
-  area Area
-  subject Subject
-}
-
-Table Alternative {
-  id integer [primary key]
-  question Question
-  text varchar
-  correct boolean
-  image byte
-  letterId varchar
+  name varchar
+  year integer
+  educationalEntityId integer
 }
 
 Table Area {
@@ -41,33 +11,51 @@ Table Area {
   name varchar
 }
 
-Table Subject{
+Table Subject {
   id integer [primary key]
   name varchar
+  areaId integer
 }
 
-Table TextBase{
+Table SubSubject {
   id integer [primary key]
-  content varchar
-  questionsRef Question
+  name varchar
+  subjectId integer
 }
 
-enum TestType {
-  VESTIBULAR
-  ENEM
-  CONCURSO
+Table Question {
+  id integer [primary key]
+  questionText varchar
+  difficulty Difficulty
+  image byte
+  subSubjectId integer
+}
+
+Table Alternative {
+  id integer [primary key]
+  text varchar
+  isCorrect boolean
+  questionId integer
+  image byte  
+}
+
+Table TestQuestion {
+  testId integer
+  questionId integer
 }
 
 enum Difficulty {
   EASY
   MEDIUM
   HARD
-}
+} 
 
-Ref: Question.alternatives > Alternative.question
-Ref: Test.year > Year.id
-Ref: Test.questions > Question.id
-Ref: Test.educationalEntity - EducationalEntity.entityName 
-Ref: Question.area - Area.name
-Ref: Question.subject - Subject.name
-Ref: TextBase.questionsRef > Question.id
+Ref: Subject.areaId > Area.id
+Ref: SubSubject.subjectId > Subject.id
+
+Ref: Question.subSubjectId > SubSubject.id
+
+Ref: Alternative.questionId > Question.id
+
+Ref: TestQuestion.testId > Test.id
+Ref: TestQuestion.questionId > Question.id
